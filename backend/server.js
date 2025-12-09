@@ -25,14 +25,7 @@ connectDB();
 
 // Middleware for CORS and JSON parsing
 app.use(cors({
-  origin: function (origin, callback) {
-    const allowedOrigins = ['http://citweb:5023', 'https://citstudent.lanecc.edu', 'http://citstudent.lanecc.edu', 'http://localhost:5173', 'http://localhost:3000'];
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: true,
   credentials: true
 }));
 app.use(express.json());
