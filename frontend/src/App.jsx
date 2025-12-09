@@ -32,7 +32,7 @@ function App() {
           { id: 'base2', name: 'Base Set 2', image: 'https://images.pokemontcg.io/base2/logo.png' },
      ];
 
-     const setsUrl = "http://localhost:5001/api/sets";
+     const setsUrl = `${import.meta.env.VITE_SERVER_URL}/api/sets`;
      const pokemonApiUrl = "https://api.pokemontcg.io/v2/cards?q=set.id:base1";
 
      // Fetch all user sets and extract Collection set cards

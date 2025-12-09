@@ -13,14 +13,21 @@ import UserSet from './models/userSets.js';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5023;
 
 // Connect to MongoDB
 connectDB();
 
 // Middleware for CORS and JSON parsing
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175'],
+  origin: function (origin, callback) {
+    const allowedOrigins = ['http://citweb:5023', 'https://citstudent.lanecc.edu', 'http://citstudent.lanecc.edu', 'http://localhost:5173', 'http://localhost:3000'];
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
 app.use(express.json());
@@ -91,7 +98,7 @@ app.post('/api/sets/:id/cards', (request, response, next) => {
         // Add new card to set
         set.cards.push({ cardId, name, image, collected: collected || false, quantity: quantity || 0 })
       }
-      
+
       return set.save().then((updatedSet) => {
         response.json(updatedSet)
       })

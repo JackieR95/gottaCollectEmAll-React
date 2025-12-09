@@ -28,9 +28,9 @@ function CardSetQuantity({ card, setId, onUpdate }) {
   const handleChange = async () => {
     try {
       if (quantity === 0) {
-        await axios.delete(`http://localhost:5001/api/sets/${setId}/cards/${card.cardId}`);
+        await axios.delete(`${import.meta.env.VITE_SERVER_URL}/api/sets/${setId}/cards/${card.cardId}`);
       } else {
-        await axios.patch(`http://localhost:5001/api/sets/${setId}/cards/${card.cardId}`, { quantity });
+        await axios.patch(`${import.meta.env.VITE_SERVER_URL}/api/sets/${setId}/cards/${card.cardId}`, { quantity });
       }
       setIsChanged(false);
       onUpdate();

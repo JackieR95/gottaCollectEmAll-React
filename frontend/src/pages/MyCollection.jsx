@@ -14,7 +14,7 @@ function MyCollection({ collection }) {
   const [allCollectionCards, setAllCollectionCards] = useState([]);
   const [marketPrice, setMarketPrice] = useState(0);
 
-  const setsUrl = "http://localhost:5001/api/sets";
+  const setsUrl = `${import.meta.env.VITE_SERVER_URL}/api/sets`;
 
   // Fetch all user sets excluding Collection set
   useEffect(() => {
@@ -46,16 +46,16 @@ function MyCollection({ collection }) {
         const prices = {};
         for (const card of allCollectionCards) {
           if (prices[card.cardId]) continue;
-          
+
           try {
             const response = await axios.get(`https://api.pokemontcg.io/v2/cards/${card.cardId}`);
             const cardData = response.data.data;
-            
+
             let price = 0.50;
             if (cardData.cardmarket?.prices?.averageSellPrice) {
               price = cardData.cardmarket.prices.averageSellPrice / 100;
             }
-            
+
             prices[card.cardId] = price;
           } catch (error) {
             prices[card.cardId] = 0.50;

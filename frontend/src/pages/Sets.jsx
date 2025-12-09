@@ -21,7 +21,7 @@ function Sets({ sets }) {
   // Fetch custom user-created sets from database
   const fetchUserSets = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/sets');
+      const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/sets`);
       const customSets = response.data.filter(set => set.name !== 'Collection');
       setUserSets(customSets);
     } catch (error) {

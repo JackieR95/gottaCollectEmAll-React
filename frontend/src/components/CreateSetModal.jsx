@@ -16,7 +16,7 @@ function CreateSetModal({ isOpen, onClose, onSetCreated }) {
   // Create new set and add to database
   const handleCreate = async (e) => {
     e.preventDefault();
-    
+
     if (!setName.trim()) {
       setError('Set name cannot be empty');
       return;
@@ -26,11 +26,11 @@ function CreateSetModal({ isOpen, onClose, onSetCreated }) {
     setError('');
 
     try {
-      const response = await axios.post('http://localhost:5001/api/sets', {
+      const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/sets`, {
         name: setName,
         setId: 'custom',
       });
-      
+
       onSetCreated(response.data);
       setSetName('');
       onClose();
@@ -74,7 +74,7 @@ function CreateSetModal({ isOpen, onClose, onSetCreated }) {
         <h2 className="pixel-text" style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>
           Create New Set
         </h2>
-        
+
         <form onSubmit={handleCreate}>
           <div style={{ marginBottom: '1rem' }}>
             <label htmlFor="setName" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>

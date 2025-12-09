@@ -26,7 +26,7 @@ function SetCards({ cards }) {
     // Fetch custom user set from database
     const fetchCustomSet = async () => {
       try {
-        const response = await axios.get(`http://localhost:5001/api/sets/${setId}`);
+        const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/sets/${setId}`);
         if (response.data && response.data.name) {
           setIsCustomSet(true);
           setSetName(response.data.name);
@@ -67,7 +67,7 @@ function SetCards({ cards }) {
 
   const fetchCustomSetRefresh = async () => {
     try {
-      const response = await axios.get(`http://localhost:5001/api/sets/${setId}`);
+      const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/sets/${setId}`);
       setUserSetCards(response.data.cards || []);
     } catch (error) {
       console.error('Error refreshing set:', error);
@@ -86,10 +86,10 @@ function SetCards({ cards }) {
       <div className="row g-4" style={{ marginLeft: '2rem', marginRight: '2rem' }}>
         {currentCards.map((card) => {
           const cardData = isCustomSet ? { ...card, images: { small: card.image }, name: card.name, id: card.cardId } : card;
-          const quantityComponent = isCustomSet ? 
+          const quantityComponent = isCustomSet ?
             <CardSetQuantity card={card} setId={setId} onUpdate={fetchCustomSetRefresh} /> :
             <CardQuantity card={cardData} />;
-          
+
           return (
             <div key={card.id || card.cardId} style={{ flex: '0 0 20%', minWidth: '20%' }}>
               <Card card={cardData} quantityComponent={quantityComponent} />

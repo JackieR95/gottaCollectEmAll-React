@@ -20,7 +20,7 @@ function CardQuantity({ card }) {
   // Fetch all user sets from database
   const fetchSets = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/sets');
+      const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/sets`);
       setUserSets(response.data);
     } catch (error) {
       console.error('Error fetching sets:', error);
@@ -40,7 +40,7 @@ function CardQuantity({ card }) {
   // Add card to selected set
   const handleAddToSet = async (setId) => {
     try {
-      await axios.post(`http://localhost:5001/api/sets/${setId}/cards`, {
+      await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/sets/${setId}/cards`, {
         cardId: card.id,
         name: card.name,
         image: card.images.small,
