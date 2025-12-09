@@ -38,7 +38,7 @@ app.use(cors({
 app.use(express.json());
 
 // Serve frontend static files
-const frontendDistPath = path.join(__dirname, '..', 'frontend', 'dist');
+const frontendDistPath = path.join(__dirname, 'dist');
 app.use(express.static(frontendDistPath));
 
 // Welcome route
