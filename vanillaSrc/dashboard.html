@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>gottaCollectEmAll</title>
+        <!--
+        Modified by: Jacqueline Rael
+        Date: 06/11/2025
+        Lab: Final Project - GottaCollectEmAll
+        -->
+    </head>
+    <body>
+
+        <div id="navbar-container"></div>
+
+
+        <!-- Collection Progress Header-->
+        <div class="text-center mt-5 mb-2">
+            <h1 class="display-1 retro-title">Collection Progress</h1>
+          </div>
+
+        <!-- Progress Container -->
+        <div class="container d-flex flex-column align-items-center mt-5">
+
+            <!-- Progress Bar -->
+            <div class="progress w-75 custom-progress">
+            <div
+                class="progress-bar custom-progress-bar"
+                role="progressbar"
+                style="width: 40%;"
+                aria-valuenow="40"
+                aria-valuemin="0"
+                aria-valuemax="100">
+            </div>
+            </div>
+
+            <!-- Number of cards-->
+            <div class="mt-1 w-75 text-end" style="font-size: 1.2rem;">
+            40 / 100
+            </div>
+        </div>
+
+        <!-- Cards & Market Price Boxes -->
+        <div class="d-flex justify-content-center gap-4 mt-4">
+
+            <!-- Box 1: Total Cards -->
+            <div class="stats-box d-flex flex-column justify-content-center align-items-center p-3 border rounded text-center shadow-sm">
+            <h5 class="mb-2 boxTotal">Total Cards</h5>
+            <p class="mb-0 retroNumber totalNumber">15</p>
+            </div>
+
+            <!-- Box 2: Market Price -->
+            <div class="stats-box d-flex flex-column justify-content-center align-items-center p-3 border rounded text-center shadow-sm">
+            <h5 class="mb-2 boxMarket">Market Price</h5>
+            <p class="mb-0 retroNumber totalCost">$1.00</p>
+            </div>
+        </div>
+
+    </body>
+</html>

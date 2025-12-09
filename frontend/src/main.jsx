@@ -1,0 +1,20 @@
+/*
+Written by: Jacqueline Rael
+Date: 12/08/2025
+Lab: Final Lab
+*/
+
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
+import App from './App.jsx'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './styles.scss'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </StrictMode>,
+)
