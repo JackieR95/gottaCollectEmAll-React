@@ -7,8 +7,13 @@ Lab: Final Lab
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import connectDB from './db.js';
 import UserSet from './models/userSets.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
@@ -31,6 +36,10 @@ app.use(cors({
   credentials: true
 }));
 app.use(express.json());
+
+// Serve frontend static files
+const frontendDistPath = path.join(__dirname, '..', 'frontend', 'dist');
+app.use(express.static(frontendDistPath));
 
 // Welcome route
 app.get('/', (req, res) => {
@@ -155,10 +164,10 @@ app.delete('/api/sets/:id', (request, response, next) => {
     .catch((error) => next(error))
 })
 
-// Handle unknown endpoints
-const unknownEndpoint = (request, response) => {
-  response.status(404).send({ error: 'unknown endpoint' })
-}
+// Serve index.html for any unknown routes (React Router)
+app.get('*', (request, response) => {
+  response.sendFile(path.join(frontendDistPath, 'index.html'));
+});
 
 // Global error handler
 const errorHandler = (error, request, response, next) => {
@@ -171,7 +180,6 @@ const errorHandler = (error, request, response, next) => {
   next(error)
 }
 
-app.use(unknownEndpoint);
 app.use(errorHandler);
 
 // Start server and create Collection set if it doesn't exist
