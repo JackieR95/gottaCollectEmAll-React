@@ -13,7 +13,7 @@ import './styles.scss'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter basename="/~raelj982/GottaCollectEmAll-React/frontend/">
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </StrictMode>,
