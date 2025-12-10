@@ -4,11 +4,13 @@ Date: 12/08/2025
 Lab: Final Lab
 */
 
+// Imports React state hook and HTTP client
 import { useState } from 'react';
 import axios from 'axios';
 
 // Modal to create new custom Pokemon sets
 function CreateSetModal({ isOpen, onClose, onSetCreated }) {
+  //
   const [setName, setSetName] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -50,6 +52,8 @@ function CreateSetModal({ isOpen, onClose, onSetCreated }) {
 
   if (!isOpen) return null;
 
+
+  // Modal overlay and form for creating a new set
   return (
     <div style={{
       position: 'fixed',

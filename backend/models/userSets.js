@@ -4,6 +4,7 @@ Date: 12/08/2025
 Lab: Final Lab
 */
 
+// Import Mongoose for MongoDB schema definition
 import mongoose from 'mongoose'
 
 // Schema for user sets with cards array
@@ -22,6 +23,7 @@ const userSetSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
 })
 
+// Transform schema to use 'id' instead of '_id' when converting to JSON
 userSetSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString()

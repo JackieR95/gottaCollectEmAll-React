@@ -39,6 +39,7 @@ function CardSetQuantity({ card, setId, onUpdate }) {
     }
   };
 
+
   return (
     <div style={{
       display: 'flex',

@@ -11,9 +11,10 @@ import App from './App.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles.scss'
 
+// Render the React app inside the root element with routing enabled
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/~raelj982/GottaCollectEmAll-React/frontend/">
       <App />
     </BrowserRouter>
   </StrictMode>,

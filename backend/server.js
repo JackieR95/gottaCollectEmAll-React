@@ -4,19 +4,23 @@ Date: 12/08/2025
 Lab: Final Lab
 */
 
+// Import dependencies for server, CORS, environment variables, and file paths
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
+
+// Import database connection and models
 import connectDB from './db.js';
 import UserSet from './models/userSets.js';
 
+// Import database connection and user set model
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Load environment variables and initialize Express server
 dotenv.config();
-
 const app = express();
 const PORT = process.env.PORT || 5023;
 
@@ -173,6 +177,7 @@ const errorHandler = (error, request, response, next) => {
   next(error)
 }
 
+// Initialize error handling middleware
 app.use(errorHandler);
 
 // Start server and create Collection set if it doesn't exist
@@ -190,6 +195,6 @@ app.listen(PORT, async () => {
   } catch (error) {
     console.error('Error creating Collection set:', error)
   }
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on http://citweb:${PORT}`);
 });
 

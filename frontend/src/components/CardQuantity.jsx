@@ -9,6 +9,7 @@ import axios from 'axios';
 
 // Add cards from Pokemon TCG sets to user's collection
 function CardQuantity({ card }) {
+  // State for set name input, loading status, and error messages
   const [quantity, setQuantity] = useState(0);
   const [showSetModal, setShowSetModal] = useState(false);
   const [userSets, setUserSets] = useState([]);
@@ -52,6 +53,8 @@ function CardQuantity({ card }) {
       console.error('Error adding card to set:', error);
     }
   };
+
+
 
   return (
     <div style={{

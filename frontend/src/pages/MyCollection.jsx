@@ -4,6 +4,7 @@ Date: 12/08/2025
 Lab: Final Lab
 */
 
+// Imports React hooks for state/effects and HTTP client
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -87,6 +88,7 @@ function MyCollection({ collection }) {
   const totalUniqueCards = 102;
   const percentComplete = (uniqueCardsOwned / totalUniqueCards) * 100;
 
+  // Renders the page for showing the dashboard called my collection using html code, shows the amount of cards, how many unique cards the owneer owns from the base set and market value of all cards
   return (
     <div>
         <div className="text-center mt-5 mb-2">

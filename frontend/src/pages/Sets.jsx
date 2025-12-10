@@ -4,6 +4,7 @@ Date: 12/08/2025
 Lab: Final Lab
 */
 
+// Imports React hooks, routing, HTTP client, and set creation modal component
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -34,8 +35,10 @@ function Sets({ sets }) {
     setUserSets([...userSets, newSet]);
   };
 
+  // Renders the page for sets using html code made for React, handles the Pokemon tcg sets and user created sets/ user creating sets
   return (
     <div className="container mt-5">
+
       {/* Pokémon Sets Section */}
       <div className="mb-5">
         <h1 className="text-center pixel-text" style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>Pokémon Sets</h1>
@@ -93,6 +96,7 @@ function Sets({ sets }) {
         )}
       </div>
 
+      {/* Modal for creating a new set */}
       <CreateSetModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

@@ -23,6 +23,15 @@ function SetCards({ cards }) {
   const cardsPerPage = 30;
 
   useEffect(() => {
+    // Only fetch from database if setId looks like a MongoDB ID (24 hex characters)
+    const isMongoId = /^[0-9a-f]{24}$/i.test(setId);
+
+    if (!isMongoId) {
+      // It's a Pokemon TCG set, not a custom set
+      setIsCustomSet(false);
+      return;
+    }
+
     // Fetch custom user set from database
     const fetchCustomSet = async () => {
       try {
@@ -54,17 +63,21 @@ function SetCards({ cards }) {
     setCards = cards.filter(card => card.set?.id === setId);
   }
 
+  // Pagination logic: calculate total pages and get cards for current page
   const totalPages = Math.ceil(setCards.length / cardsPerPage);
   const startIndex = (currentPage - 1) * cardsPerPage;
   const endIndex = startIndex + cardsPerPage;
   const currentCards = setCards.slice(startIndex, endIndex);
 
+  // Handler for setting the page
   const handlePageChange = (event, page) => {
     setCurrentPage(page);
   };
 
+  // Display set name
   const displayName = isCustomSet ? setName : (setNames[setId] || setId);
 
+  // Refreshes custom set data after updates for instance quantity changes.
   const fetchCustomSetRefresh = async () => {
     try {
       const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/sets/${setId}`);
@@ -74,6 +87,7 @@ function SetCards({ cards }) {
     }
   };
 
+  // Renders the page for showing all the cards using html code made for React, handles the Pokemon tcg card image, name and pagination
   return (
     <div>
       <div className="text-center mt-4">

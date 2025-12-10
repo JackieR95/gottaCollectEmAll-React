@@ -4,6 +4,7 @@ Date: 12/08/2025
 Lab: Final Lab
 */
 
+// Imports card component, React state hook, and Material-UI pagination components
 import Card from "../components/Card";
 import { useState } from "react";
 import Pagination from '@mui/material/Pagination';
@@ -11,18 +12,22 @@ import Stack from '@mui/material/Stack';
 
 // Display all Pokemon cards with pagination
 function Cards({ cards }) {
+  // Pagination state and configuration
   const [currentPage, setCurrentPage] = useState(1);
   const cardsPerPage = 30;
 
+  // Calculate pagination values and slice cards for current page
   const totalPages = Math.ceil(cards.length / cardsPerPage);
   const startIndex = (currentPage - 1) * cardsPerPage;
   const endIndex = startIndex + cardsPerPage;
   const currentCards = cards.slice(startIndex, endIndex);
 
+    // Handle page navigation
   const handlePageChange = (event, page) => {
     setCurrentPage(page);
   }
 
+  // Cards display with pagination, translated from html code to react
   return (
     <div>
       <div className="text-center mt-4">
